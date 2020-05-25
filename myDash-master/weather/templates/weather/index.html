@@ -1,0 +1,63 @@
+{%extends "base.html"%}
+
+{% block title %}Weather{% endblock title %} 
+
+{% block main %}
+<style>
+    #content {
+            
+        }
+</style>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2" id="content">
+                <h2 style="color:white">What's the weather like?</h2>
+                
+                <form method="POST" role="form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="input-group">
+                            {{ zipform.zip }} 
+                          <span class="input-group-btn">
+                              <button class="btn btn-default" name="zipcode">ADD</button>
+                          </span>
+                        </div>
+                    </div>
+                </form>     
+                <ul class="list-group t20">
+                    {% for weather in weather_data %}
+                    <li class="list-group-item">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ weather.temperature }}° F</span>
+                                        <br> {{ weather.description }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="btn-group" style="margin-left:auto; margin-right:0;">
+                            
+                                <a href="{% url 'weather:delete' zip=weather.city %}"><button type="button" class="btn btn-warning">
+                                        <i class="glyphicon glyphicon-trash"></i> DELETE
+                                    </button></a>
+                            
+                            </div>
+                        </article>
+
+                    </div>
+
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+{% endblock main %}

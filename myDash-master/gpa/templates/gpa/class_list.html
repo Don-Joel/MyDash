@@ -1,0 +1,42 @@
+{%extends "base.html"%}
+
+{% block title %}GPA Calculator{% endblock title %} 
+
+{% block main %}
+    <header id=gpaheader>
+      <h1>GPA Calculator</h1>
+    </header>
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="d-flex flex-column">
+                <table style="width:100%" >
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Semester</th>
+                        <th>Year</th>
+                        <th>Grade Letter</th>
+                        <th>Course GPA</th>
+                        <th>Credit Hours</th>
+                    </tr>
+                    {% for class in class_list %}
+                    <tr>
+                        <th>{{ class.name }}</th>
+                        <th>{{ class.semester }}</th>   
+                        <th>{{ class.year }}</th>   
+                        <th>{{ class.grade }}</th>
+                        <th>{{ class.numeric_grade }}</th>
+                        <th>{{ class.credit_hours }}</th>
+                        <th><a href="/gpa/{{ class.id }}/update" class="btn btn-info" role="button">Edit</a> </th>
+                        <th><a href="/gpa/{{ class.id }}/delete" class="btn btn-info" role="button">Delete</a> </th>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <div class="card" >
+                  <div class="card-body">
+                    <h4 class="card-title">Current GPA: {{ grade }}</h4>
+                  </div>
+                </div>
+                  <a class="btn btn-primary" href="/gpa/create/">Add a new class</a> 
+            </div>
+        </div>
+
+{% endblock main %}
