@@ -15,6 +15,8 @@ MyDash was created by  @Don-Joel, @TildenWinston, @cfrymire98, and @simonmli for
 * /Todo/ was updated to match styling of weather
 
 Other issues have also been fixed, but more, such as inconsistant styling with the calendar and GPA modules, still exist.
+# Licensing
+MIT License
 
-Architecture
+# Architecture
 The website is written using Django and hosted on Heroku.
